@@ -7,7 +7,7 @@
  *
  * @author aoife
  */
-public class BoundedStack {
+public class BoundedStack extends Stack {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
