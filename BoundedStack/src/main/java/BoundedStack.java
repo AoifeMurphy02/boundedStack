@@ -1,31 +1,34 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 /**
  *
  * @author aoife
  */
+//  Extends your Stack class
 public class BoundedStack extends Stack {
-  final int maxCapacity;
+
+//2. Contains a final int called INITAL_CAP
+     private static final int INITAL_CAP = 10;
+     private final int cap;
 //3. Contains two constructors (in both cases, your Stack’s constructor should be called first, using super();):
     
     
     
-//a. A default constructor that sets your maxCapacity to 10
+//a. A default constructor that sets your INITAL_CAP to 10
      public BoundedStack() {
           super();
-        this.maxCapacity = 10;
+          cap = INITAL_CAP;
+        
     }
-//b. A parameterized constructor that takes 1 parameter – a value for the maxCapacity.
+//b. A parameterized constructor that takes 1 parameter – a value for the INITAL_CAP.
      //i. If the maximum capacity supplied is invalid (<= 0), throw an IllegalArgumentException  
-      public BoundedStack(int maxCapacity) {
+      public BoundedStack(int maxCap) {
            super();
-           if(maxCapacity <= 0 ){
-               throw new IllegalArgumentException();
-           }
-        this.maxCapacity = maxCapacity;
+          this.cap = maxCap;
+        
     }
 
 //    A method called push() that:
@@ -33,14 +36,14 @@ public class BoundedStack extends Stack {
 //b. Checks if there is sufficient space left in the Stack to add this element
 //i. If the Stack is full, throws an IllegalArgumentException*
 //c. If sufficient space exists, uses the push method from the super class to carry out the push logic.
-    
+      
     @Override
     public boolean push(String value){
     if(!isFull()){
-        throw new IllegalArgumentException();
+        throw new StackFullEx("Stack is full");
     }
-    push(value);
-    return true;
+    
+  return super.push(value);
 }
 //  A method called isFull() that:
 //a. Takes no parameters.
@@ -48,10 +51,10 @@ public class BoundedStack extends Stack {
 //c. Returns false if there is no space remaining in the stack.
    
     public boolean isFull(){
-        if(maxCapacity < size){
-        return false;
-    }
-        return true;
+        return size < cap;
     }
 
+    
+
+  
 }
